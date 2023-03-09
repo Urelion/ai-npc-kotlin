@@ -3,5 +3,7 @@ version: 1.0.0
 main: gg.stephen.ainpc.AINPC
 api-version: 1.19
 depend: [ Citizens ]
+libraries:
+  - com.theokanning.openai-gpt3-java:client:0.8.0
 commands:
   ainpc:

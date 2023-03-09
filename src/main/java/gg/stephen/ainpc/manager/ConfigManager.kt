@@ -2,35 +2,30 @@ package gg.stephen.ainpc.manager
 
 import gg.stephen.ainpc.AINPC
 import org.bukkit.ChatColor
+import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
 
 object ConfigManager {
 
-    private lateinit var pluginFormat: String
-    private lateinit var youFormat: String
-    private lateinit var aiFormat: String
-    lateinit var apiKey: String
-    private lateinit var nowTalking: String
-    private lateinit var nowTalkingNewNpc: String
-    private lateinit var noLongerTalking: String
-    private lateinit var walkedTooFar: String
-    var leftClick: Boolean = false
-    var rightClick: Boolean = false
+    private lateinit var config: FileConfiguration
+    private val pluginFormat get() = getConfigValue("plugin-message")
+    private val youFormat get() = getConfigValue("you-message")
+    private val aiFormat: String get() = getConfigValue("ai-message")
+    val apiKey: String get() = getConfigValue("api-key")
+    private val nowTalking: String get() = getConfigValue("messages.now-talking")
+    private val nowTalkingNewNpc: String get() = getConfigValue("messages.now-talking-new-npc")
+    private val noLongerTalking: String get() = getConfigValue("messages.no-longer-talking")
+    private val walkedTooFar: String get() = getConfigValue("messages.walked-too-far")
+    val leftClick: Boolean get() = config.getBoolean("left-click")
+    val rightClick: Boolean get() = config.getBoolean("right-click")
 
     fun init(ainpc: AINPC) {
         ainpc.saveDefaultConfig()
-        val config = ainpc.config
+        config = ainpc.config
+    }
 
-        pluginFormat = ChatColor.translateAlternateColorCodes('&', config.getString("plugin-message")!!)
-        youFormat = ChatColor.translateAlternateColorCodes('&', config.getString("you-message")!!)
-        aiFormat = ChatColor.translateAlternateColorCodes('&', config.getString("ai-message")!!)
-        apiKey = ChatColor.translateAlternateColorCodes('&', config.getString("api-key")!!)
-        nowTalking = ChatColor.translateAlternateColorCodes('&', config.getString("messages.now-talking")!!)
-        nowTalkingNewNpc = ChatColor.translateAlternateColorCodes('&', config.getString("messages.now-talking-new-npc")!!)
-        noLongerTalking = ChatColor.translateAlternateColorCodes('&', config.getString("messages.no-longer-talking")!!)
-        walkedTooFar = ChatColor.translateAlternateColorCodes('&', config.getString("messages.walked-too-far")!!)
-        leftClick = config.getBoolean("left-click")
-        rightClick = config.getBoolean("right-click")
+    private fun getConfigValue(path: String): String {
+        return ChatColor.translateAlternateColorCodes('&', config.getString(path)!!)
     }
 
     fun sendPluginMessage(player: Player, message: String) {

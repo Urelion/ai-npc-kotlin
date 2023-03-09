@@ -36,9 +36,10 @@ class AINPC : JavaPlugin() {
         pluginManager.registerEvents(promptsManager, this)
         pluginManager.registerEvents(NPCManager(), this)
 
-        val command = AINPCCommand(promptsManager)
-        getCommand("ainpc")!!.setExecutor(command)
-        getCommand("ainpc")!!.tabCompleter = command
+        AINPCCommand(promptsManager).let {
+            getCommand("ainpc")!!.setExecutor(it)
+            getCommand("ainpc")!!.tabCompleter = it
+        }
 
         logger.log(Level.FINE, "AINPC loaded fine. Please note that any messages regarding a trait not loading is a Citizens bug that we cannot fix. Don't worry - your AI NPC's will still work!")
     }

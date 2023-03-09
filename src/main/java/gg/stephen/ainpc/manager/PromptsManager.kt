@@ -35,14 +35,12 @@ class PromptsManager(ainpc: AINPC) : Listener {
     }
 
     fun setPrompt(npc: NPC, prompt: String) {
-        if (npc != null) {
-            if (npc.getTraitNullable(AITrait::class.java) != null) {
-                npc.removeTrait(AITrait::class.java)
-            }
-            val aiTrait = AITrait()
-            aiTrait.prompt = prompt
-            npc.addTrait(aiTrait)
+        if (npc.getTraitNullable(AITrait::class.java) != null) {
+            npc.removeTrait(AITrait::class.java)
         }
+        val aiTrait = AITrait()
+        aiTrait.prompt = prompt
+        npc.addTrait(aiTrait)
         prompts[npc.id as Integer] = prompt
         config.set(npc.id.toString(), prompt)
         config.save(file)
