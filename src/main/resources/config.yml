@@ -1,0 +1,20 @@
+left-click: true
+right-click: true
+# This is whether each click will start a conversation.
+# Set one or both to true.
+
+api-key: ''
+# You can generate your API key here! https://beta.openai.com/account/api-keys
+# Set the key and restart (NOT reload) the server!
+
+## Plugin messages
+plugin-message: '&b[AI-NPC] &7%message%'
+
+you-message: '&eYou: &f%message%'
+ai-message: '&c%name%: &f%message%'
+
+messages:
+  now-talking: 'You are now talking to %npc%. Say hi!'
+  now-talking-new-npc: 'You are no longer talking to %oldnpc% and now talking to %newnpc%.'
+  no-longer-talking: 'You are no longer talking to %npc%.'
+  walked-too-far: 'You walked too far from %npc% so the conversation has ended.'

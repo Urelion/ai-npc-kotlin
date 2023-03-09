@@ -1,0 +1,7 @@
+name: AINPC
+version: 1.0.0
+main: gg.stephen.ainpc.AINPC
+api-version: 1.19
+depend: [ Citizens ]
+commands:
+  ainpc:
