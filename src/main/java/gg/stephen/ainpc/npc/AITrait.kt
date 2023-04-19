@@ -54,6 +54,10 @@ class AITrait : Trait("npcai") {
         } else {
             var oldName: String? = null
             for (npc in CitizensAPI.getNPCRegistry().sorted()) {
+                if (npc == null) {
+                    continue
+                }
+
                 val trait: AITrait = npc.getTraitNullable(AITrait::class.java)
                 if (trait != null && trait.conversations.containsKey(player.uniqueId)) {
                     oldName = npc.name
