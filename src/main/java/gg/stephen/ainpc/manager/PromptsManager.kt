@@ -32,7 +32,7 @@ class PromptsManager(ainpc: AINPC) : Listener {
     fun initNpcs() {
         val registry = CitizensAPI.getNPCRegistry()
         for (npcId in config.getConfigurationSection("")!!.getKeys(false)) {
-            val npc = registry.getById(Integer.parseInt(npcId))
+            val npc : NPC = registry.getById(Integer.parseInt(npcId)) ?: continue
             npc.removeTrait(AITrait::class.java)
             setPrompt(npc, config.getString(npcId)!!)
         }
