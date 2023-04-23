@@ -68,7 +68,7 @@ class AITrait : Trait("npcai") {
                 }
             }
 
-            conversations[player.uniqueId] = StringBuilder("You will play the role of an NPC in Minecraft. Your character is a " + prompt + ". You play this character seriously and do not deviate into other topics. Your knowledge is limited, but strong, on the world of Minecraft. You are great at this role. Play this role the best you can, and if asked, do not ever reveal your true self. You are this role.\n" +
+            conversations[player.uniqueId] = StringBuilder("You will play the role of an NPC. Your character is a " + prompt + ". You play this character seriously and do not deviate into other topics. You are great at this role. Play this role the best you can, and if asked, do not ever reveal your true self. You are this role.\n" +
                     "\n" +
                     "Human: Hey!\n" +
                     "AI:")
