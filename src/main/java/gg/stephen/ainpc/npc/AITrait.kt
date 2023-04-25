@@ -12,6 +12,7 @@ import net.citizensnpcs.api.CitizensAPI
 import net.citizensnpcs.api.event.NPCClickEvent
 import net.citizensnpcs.api.event.NPCLeftClickEvent
 import net.citizensnpcs.api.event.NPCRightClickEvent
+import net.citizensnpcs.api.persistence.Persist
 import net.citizensnpcs.api.trait.Trait
 import net.citizensnpcs.api.trait.TraitName
 import org.bukkit.Bukkit
@@ -23,6 +24,7 @@ class AITrait : Trait("npcai") {
 
     private val service = OpenAiService(apiKey, 0)
 
+    @Persist
     lateinit var prompt: String
     val conversations = HashMap<UUID, StringBuilder>()
 
