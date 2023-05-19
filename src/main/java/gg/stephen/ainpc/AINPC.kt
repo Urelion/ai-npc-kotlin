@@ -9,6 +9,7 @@ import gg.stephen.ainpc.npc.AITrait
 import net.citizensnpcs.api.CitizensAPI
 import net.citizensnpcs.api.trait.TraitInfo
 import org.bukkit.Bukkit
+import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.logging.Level
 
@@ -17,7 +18,8 @@ class AINPC : JavaPlugin() {
     override fun onEnable() {
         val pluginManager = server.pluginManager
 
-        if (pluginManager.getPlugin("Citizens") == null) {
+        val citizensPlugin : Plugin? = pluginManager.getPlugin("Citizens")
+        if (citizensPlugin == null) {
             logger.log(Level.SEVERE, "Cannot start AI-NPC as Citizens dependency was not found. Please install it from Citizens SpigotMC page.")
             Bukkit.getPluginManager().disablePlugin(this)
             return
@@ -33,6 +35,9 @@ class AINPC : JavaPlugin() {
         CitizensAPI.getTraitFactory().registerTrait(TraitInfo.create(AITrait::class.java))
 
         val promptsManager = PromptsManager(this)
+        if (citizensPlugin.isEnabled) {
+            promptsManager.initNpcs()
+        }
         pluginManager.registerEvents(promptsManager, this)
         pluginManager.registerEvents(NPCManager(), this)
 

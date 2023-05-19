@@ -17,7 +17,11 @@ class NPCManager : Listener {
         val player = e.player
 
         for (npc in CitizensAPI.getNPCRegistry().sorted()) {
-            if (npc.entity == null || npc.getTraitNullable(AITrait::class.java) == null) {
+            if (
+                npc == null ||
+                npc.entity == null ||
+                npc.getTraitNullable(AITrait::class.java) == null
+            ) {
                 continue
             }
 
